@@ -86,8 +86,9 @@ $(document).ready(function(){
         $('#players-input').val('');
         var output = game.playersGuessSubmission(parseInt(guess, 10));
         $('#title').text(output);
-        $('#Guesses').find(".guess:contains('-'):first").text(guess); 
-        
+        if(output !== "You have already guessed that number."){
+            $('#Guesses').find(".guess:contains('-'):first").text(guess); 
+        }  
     }
     $('#Go').on('click', function(){
         makeAGuess(game);
