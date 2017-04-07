@@ -43,7 +43,7 @@ Game.prototype.playersGuessSubmission = function(num){
 
 Game.prototype.checkGuess = function(){
     if(this.playersGuess === this.winningNumber){
-        $('#hint, #submit').prop("disabled",true);
+        $('#Clue, #Go').prop("disabled",true);
         $('#subtitle').text("Press the Reset button to play again!");
         return "You Win!"  
     }
@@ -73,7 +73,8 @@ function newGame(){
 Game.prototype.provideHint = function(){
     var hint = [] ; 
     hint.push(this.winningNumber, generateWinningNumber(), generateWinningNumber()); 
-    return shuffle(hint) ; 
+    return shuffle(hint) ;  
+
 }
 
 
@@ -103,11 +104,13 @@ $(document).ready(function(){
         $('#title').text('Play the Guessing Game!');
         $('#subtitle').text('Guess a number between 1-100!')
         $('.guess').text('-');
-        $('#hint, #submit').prop("disabled",false);
+        $('#Clue, #Go').prop("disabled",false);
     })
     $('#Clue').click(function(){
         var hint = game.provideHint(); 
-        $('#title').text("The winning number is " + hint[0] + ", " + hint[1] + ", or " + hint[2]); 
+        $('#title').text("The winning number is " + hint[0] + ", " + hint[1] + ", or " + hint[2]);
+        $('#Clue').prop("disabled",true);
+
     });
 
 })
