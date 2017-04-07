@@ -71,10 +71,17 @@ function newGame(){
 }
 
 Game.prototype.provideHint = function(){
-    var hint = [] ; 
-    hint.push(this.winningNumber, generateWinningNumber(), generateWinningNumber()); 
-    return shuffle(hint) ;  
-
+    if(this.pastGuesses.length < 3){
+        var hint = []; 
+        hint.push("No hints yet...Give it your best shot first!", "Hmmm...I'm blanking at the moment. Give it a guess while I think.",
+                 "That would make it too easy!", "Check back with me after another guess or two"); 
+        return shuffle(hint)[0].toString(); 
+    }
+    else{
+        var hint = [] ; 
+        hint.push(this.winningNumber, generateWinningNumber(), generateWinningNumber()); 
+        return shuffle(hint) ;  
+    }
 }
 
 
@@ -107,10 +114,14 @@ $(document).ready(function(){
         $('#Clue, #Go').prop("disabled",false);
     })
     $('#Clue').click(function(){
-        var hint = game.provideHint(); 
-        $('#title').text("The winning number is " + hint[0] + ", " + hint[1] + ", or " + hint[2]);
-        $('#Clue').prop("disabled",true);
-
+        var hint = game.provideHint();
+        if(typeof hint == "string"){
+            $('#title').text(hint); 
+        }
+        else{
+            $('#title').text("The winning number is " + hint[0] + ", " + hint[1] + ", or " + hint[2]);
+            $('#Clue').prop("disabled",true);
+        }
     });
 
 })
