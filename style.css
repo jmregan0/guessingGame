@@ -14,9 +14,13 @@ ul {
     list-style: none;
     padding: 0;
 }
-#headers{
-    background-color: ghostwhite; 
-    
+#title{
+    color: ghostwhite;
+    font-family: monospace; 
+}
+#subtitle{
+    color: ghostwhite;
+    font-family: monospace; 
 }
 img {
     display: inline;

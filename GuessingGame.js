@@ -58,7 +58,8 @@ Game.prototype.checkGuess = function(){
                 return "You Lose."
             }
             else{
-                if(this.difference() < 10){return "You're burning up!"}
+                if(this.difference() < 5){return "You're burning up!"}
+                else if(this.difference() < 10) {return "You're hot!"}
                 else if(this.difference() < 25){return "You're lukewarm."}
                 else if(this.difference() < 50){return "You're a bit chilly."}
                 else{return "You're ice cold!"}  
